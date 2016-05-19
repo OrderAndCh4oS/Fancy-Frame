@@ -36,7 +36,7 @@ diffH = roughHSegments / actualHSeg;
 newWidth = blockWidth*diffH;
 newHeight = blockHeight*diffH;
 newCornerSize = cornerSize*diffH;
-newMargin = margin + Math.ceil((cornerSize - newCornerSize) / 2);
+newMargin = margin + Math.ceil((cornerSize - newCornerSize));
 
 console.log(diffH);
 
