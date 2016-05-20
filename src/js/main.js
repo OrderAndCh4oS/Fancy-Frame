@@ -5,7 +5,7 @@ var winWidth = $(window).width(),
     newCornerSize,
     blockWidth = 10,
     blockHeight = 10,
-    margin = 0,
+    margin = 20,
     newMargin,
     newVMargin,
     availableWidth = winWidth - (margin * 2) - (cornerSize * 2),
@@ -39,7 +39,7 @@ newMargin = Math.ceil(margin + (cornerSize - newCornerSize));
 availableHeight = winHeight - (newMargin * 2) - (newCornerSize * 2);
 roughVSegments = availableHeight / newWidth;
 actualVSeg = Math.floor(roughVSegments);
-diffV = availableHeight - Math.ceil(newWidth * actualVSeg);
+diffV = availableHeight - newWidth * actualVSeg;
 newVMargin = Math.ceil(newMargin + (diffV/2));
 newVOffSet = newVMargin + newCornerSize;
 
@@ -70,9 +70,9 @@ for (var i = 0; i < actualHSeg; i++) {
 
 for (i = 0; i < actualVSeg; i++) {
     move = newVOffSet + (i * newWidth);
-    block = createBlock("width:"+newWidth+"px; height:"+newHeight+"px; right:"+newMargin+"px; top:"+ move + "px; transform: rotate(270deg);");
+    block = createBlock("width:"+newWidth+"px; height:"+newHeight+"px; right:"+newMargin+"px; top:"+ move + "px; transform: rotate(90deg);");
     screen.append(block);
-    block = createBlock("width:"+newWidth+"px; height:"+newHeight+"px; left:"+newMargin+"px; top:"+ move + "px; transform: rotate(90deg);");
+    block = createBlock("width:"+newWidth+"px; height:"+newHeight+"px; left:"+newMargin+"px; top:"+ move + "px; transform: rotate(270deg);");
     screen.append(block);
 }
 
