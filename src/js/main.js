@@ -1,5 +1,5 @@
-var winWidth = $(window).width() - 20, // -20 Removes Scroll Bar
-    winHeight = $(window).height() - 20, // -20
+var winWidth = $(window).width(),
+    winHeight = $(window).height(),
     screen = $('#screen'),
     cornerSize = 150,
     newCornerSize,
