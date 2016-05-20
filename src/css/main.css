@@ -18,14 +18,33 @@ body {
     position: absolute;
     width: 150px;
     height: 150px;
-    background-color: tomato;
+
 }
 
 .block {
     position: absolute;
     width: 200px;
     height: 100px;
-    background-color: aquamarine;
+}
+
+.pattern .corner {
+    background: url("../img/flowers-corner.png") top left no-repeat;
+    background-size: contain;
+}
+
+.pattern .block {
+    background: url("../img/flowers-segment.png") top left no-repeat;
+    background-size: contain;
+}
+
+.plain .corner {
+    background: url("../img/Plain-01.png") top left no-repeat;
+    background-size: contain;
+}
+
+.plain .block {
+    background: url("../img/Plain-02.png") top left no-repeat;
+    background-size: contain;
 }
 
 .top {

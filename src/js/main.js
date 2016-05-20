@@ -1,11 +1,11 @@
 var winWidth = $(window).width(),
     winHeight = $(window).height(),
     screen = $('#screen'),
-    cornerSize = 150,
+    cornerSize = 30,
     newCornerSize,
-    blockWidth = 200,
-    blockHeight = 100,
-    margin = 20,
+    blockWidth = 10,
+    blockHeight = 10,
+    margin = 0,
     newMargin,
     newVMargin,
     availableWidth = winWidth - (margin * 2) - (cornerSize * 2),
@@ -30,22 +30,27 @@ screen.css({
 roughHSegments = availableWidth / blockWidth;
 actualHSeg = Math.ceil(roughHSegments);
 diffH = roughHSegments / actualHSeg;
-newWidth = blockWidth*diffH;
-newHeight = blockHeight*diffH;
+newWidth = Math.ceil(blockWidth*diffH);
+newHeight = Math.ceil(blockHeight*diffH);
 
-newCornerSize = cornerSize*diffH;
-newMargin = margin + Math.ceil((cornerSize - newCornerSize));
+newCornerSize = Math.ceil(cornerSize*diffH);
+newMargin = Math.ceil(margin + (cornerSize - newCornerSize));
 
 availableHeight = winHeight - (newMargin * 2) - (newCornerSize * 2);
 roughVSegments = availableHeight / newWidth;
 actualVSeg = Math.floor(roughVSegments);
 diffV = availableHeight - Math.ceil(newWidth * actualVSeg);
-newVMargin = newMargin + (diffV/2);
+newVMargin = Math.ceil(newMargin + (diffV/2));
 newVOffSet = newVMargin + newCornerSize;
 
-$(".corner").css({
+var corner = $(".corner");
+
+corner.css({
     "width": newCornerSize,
     "height": newCornerSize
+}).each(function (index) {
+    var rotate = index * 90;
+    $(this).css("transform", "rotate("+rotate+"deg)");
 });
 
 $(".top").css("top", newVMargin+"px");
@@ -56,18 +61,18 @@ $(".left").css("left", newMargin+"px");
 // ToDo: rotate blocks CSS Transform?
 
 for (var i = 0; i < actualHSeg; i++) {
-    move = offSet + (i * newWidth);
-    block = createBlock("width:"+newWidth+"px; height:"+newHeight+"px; top:"+newVMargin+"px; left:"+ move + "px;");
+    move = Math.ceil(offSet + (i * newWidth));
+    block = createBlock("width:"+newWidth+"px; height:"+newHeight+"px; top:"+newVMargin+"px; left:"+ move + "px; transform: rotate(0deg);");
     screen.append(block);
-    block = createBlock("width:"+newWidth+"px; height:"+newHeight+"px; bottom:"+newVMargin+"px; left:"+ move + "px;");
+    block = createBlock("width:"+newWidth+"px; height:"+newHeight+"px; bottom:"+newVMargin+"px; left:"+ move + "px; transform: rotate(180deg);");
     screen.append(block);
 }
 
 for (i = 0; i < actualVSeg; i++) {
     move = newVOffSet + (i * newWidth);
-    block = createBlock("width:"+newHeight+"px; height:"+newWidth+"px; left:"+newMargin+"px; top:"+ move + "px;");
+    block = createBlock("width:"+newWidth+"px; height:"+newHeight+"px; right:"+newMargin+"px; top:"+ move + "px; transform: rotate(270deg);");
     screen.append(block);
-    block = createBlock("width:"+newHeight+"px; height:"+newWidth+"px; right:"+newMargin+"px; top:"+ move + "px;");
+    block = createBlock("width:"+newWidth+"px; height:"+newHeight+"px; left:"+newMargin+"px; top:"+ move + "px; transform: rotate(90deg);");
     screen.append(block);
 }
 
