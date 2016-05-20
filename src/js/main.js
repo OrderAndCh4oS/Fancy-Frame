@@ -5,10 +5,10 @@ var winWidth = $(window).width(),
     newCornerSize,
     blockWidth = 10,
     blockHeight = 10,
-    margin = 20,
+    minMargin = 20,
     newMargin,
     newVMargin,
-    availableWidth = winWidth - (margin * 2) - (cornerSize * 2),
+    availableWidth = winWidth - (minMargin * 2) - (cornerSize * 2),
     block,
     roughHSegments,
     diffH,
@@ -16,7 +16,7 @@ var winWidth = $(window).width(),
     roughVSegments,
     actualHSeg,
     actualVSeg,
-    offSet = margin + cornerSize,
+    offSet = minMargin + cornerSize,
     newVOffSet,
     newWidth,
     newHeight,
@@ -34,7 +34,7 @@ newWidth = Math.ceil(blockWidth*diffH);
 newHeight = Math.ceil(blockHeight*diffH);
 
 newCornerSize = Math.ceil(cornerSize*diffH);
-newMargin = Math.ceil(margin + (cornerSize - newCornerSize));
+newMargin = Math.ceil(minMargin + (cornerSize - newCornerSize));
 
 availableHeight = winHeight - (newMargin * 2) - (newCornerSize * 2);
 roughVSegments = availableHeight / newWidth;
