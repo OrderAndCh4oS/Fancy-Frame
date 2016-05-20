@@ -1,23 +1,23 @@
 var winWidth = $(window).width() - 20, // -20 Removes Scroll Bar
     winHeight = $(window).height() - 20, // -20
     screen = $('#screen'),
-    corner = "<div class=\"corner\"></div>",
     cornerSize = 150,
     newCornerSize,
     blockWidth = 200,
     blockHeight = 100,
     margin = 20,
     newMargin,
+    newVMargin,
     availableWidth = winWidth - (margin * 2) - (cornerSize * 2),
     block,
     roughHSegments,
     diffH,
     diffV,
     roughVSegments,
-    ratio,
     actualHSeg,
     actualVSeg,
     offSet = margin + cornerSize,
+    newVOffSet,
     newWidth,
     newHeight,
     move;
@@ -40,8 +40,8 @@ availableHeight = winHeight - (newMargin * 2) - (newCornerSize * 2);
 roughVSegments = availableHeight / newWidth;
 actualVSeg = Math.floor(roughVSegments);
 diffV = availableHeight - Math.ceil(newWidth * actualVSeg);
-var newVMargin = newMargin + (diffV/2);
-var newVOffSet = newVMargin + newCornerSize;
+newVMargin = newMargin + (diffV/2);
+newVOffSet = newVMargin + newCornerSize;
 
 $(".corner").css({
     "width": newCornerSize,
